@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Z: Shin Budokai 2 HD - Comparison Hub</title>
+    
+    <script defer src="https://unpkg.com/img-comparison-slider@7/dist/index.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@7/dist/styles.css" />
+
+    <style>
+        :root {
+            --dbz-orange: #ff5500;
+            --dbz-yellow: #f1c40f;
+            --dbz-red: #c0392b;
+            --dark-bg: #08090c;
+            --card-bg: #12141c;
+            --text-gray: #7f8c8d;
+        }
+
+        body { 
+            font-family: 'Arial Black', Gadget, sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #ffffff; 
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Fundo escuro com uma aura avermelhada de combate no centro */
+            background-image: radial-gradient(circle at center, #2c1111 0%, #08090c 100%);
+        }
+
+        .container { max-width: 1100px; width: 100%; text-align: center; }
+
+        header { 
+            padding: 35px 0; 
+            margin-bottom: 25px; 
+            border-bottom: 4px solid var(--dbz-red);
+            box-shadow: 0 8px 25px rgba(192, 57, 43, 0.4);
+        }
+        
+        h1 { 
+            color: var(--dbz-yellow); 
+            margin: 0; 
+            font-size: 2.6rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-style: italic;
+            text-shadow: 3px 3px 0px var(--dbz-red), -1px -1px 0px var(--dbz-red), 1px -1px 0px var(--dbz-red), -1px 1px 0px var(--dbz-red);
+        }
+        
+        .category-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cat {
+            background: #1c1f2b;
+            border: 2px solid var(--dbz-orange);
+            color: #ffffff;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-cat.active {
+            border-color: var(--dbz-yellow);
+            background: var(--dbz-orange);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--dbz-orange);
+        }
+
+        .image-selector {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-img {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--dbz-orange);
+            background: #1c1f2b;
+            color: var(--dbz-orange);
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 8px;
+        }
+
+        .btn-img.active {
+            background: var(--dbz-yellow);
+            border-color: var(--dbz-red);
+            color: #000000;
+            transform: scale(1.15) rotate(5deg); /* Pequena rotação invertida em relação ao DBZ 1 */
+            box-shadow: 0 0 12px var(--dbz-yellow);
+        }
+
+        .comparison-area {
+            background: var(--card-bg);
+            padding: 8px;
+            border: 2px solid #222636;
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+            border-radius: 4px;
+        }
+
+        img-comparison-slider {
+            width: 100%;
+            --divider-color: var(--dbz-orange);
+            --default-handle-color: var(--dbz-orange);
+        }
+
+        img-comparison-slider img {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .label-box {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            font-weight: bold;
+            color: var(--dbz-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        footer { 
+            margin-top: 60px; 
+            color: var(--text-gray); 
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Dragon Ball Z: Shin Budokai 2 HD</h1>
+            <p style="color: var(--dbz-yellow); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 3px;">Another Road - Comparison Hub</p>
+        </header>
+
+        <div class="category-menu">
+            <button class="btn-cat active" onclick="setCategory('psp_vs_hd', this)">PSP Internal vs HD Standard</button>
+            <button class="btn-cat" onclick="setCategory('hd_vs_vivid', this)">HD Standard vs Vivid Profile</button>
+        </div>
+
+        <div class="image-selector" id="imgSelector"></div>
+
+        <div class="comparison-area">
+            <div class="label-box">
+                <span id="label-left">Original</span>
+                <span id="label-right">HD</span>
+            </div>
+            
+            <img-comparison-slider id="slider">
+                <img slot="first" id="img-before" src="" />
+                <img slot="second" id="img-after" src="" />
+            </img-comparison-slider>
+        </div>
+
+        <footer>
+            PROJETO DESENVOLVIDO POR MESKH4H4 | DRAGON BALL HD 2026
+        </footer>
+    </div>
+
+    <script>
+        // Lembre-se de ajustar para o nome exato do novo repositório criado no seu GitHub
+        const baseUrl = "https://meskh4h4.github.io/Dragon-ball-Z-Shin-Budokai-2/comparacoes";
+        
+        let currentCategory = 'psp_vs_hd';
+        let currentIndex = 0;
+
+        const configs = {
+            'psp_vs_hd': {
+                leftDir: 'PSP/psp',      // Pasta PSP / psp-0.png
+                rightDir: 'HD/hd',       // Pasta HD / hd-0.png
+                labelL: 'PSP Emulador 4x',
+                labelR: 'HD Texture Pack'
+            },
+            'hd_vs_vivid': {
+                leftDir: 'HD/hd',
+                rightDir: 'VIVID/vivid',  // Pasta VIVID / vivid-0.png
+                labelL: 'HD Padrão',
+                labelR: 'Vivid Enhanced (Color Profile)'
+            }
+        };
+
+        function initSelector() {
+            const selector = document.getElementById('imgSelector');
+            selector.innerHTML = ''; 
+            // Atualizado para 9 imagens: vai de 0 até 8
+            for (let i = 0; i <= 8; i++) {
+                const btn = document.createElement('button');
+                btn.innerText = i;
+                btn.className = 'btn-img' + (i === currentIndex ? ' active' : '');
+                btn.onclick = () => setIndex(i, btn);
+                selector.appendChild(btn);
+            }
+        }
+
+        function setCategory(cat, btn) {
+            currentCategory = cat;
+            document.querySelectorAll('.btn-cat').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateImages();
+        }
+
+        function setIndex(idx, btn) {
+            currentIndex = idx;
+            document.querySelectorAll('.btn-img').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateImages();
+        }
+
+        function updateImages() {
+            const config = configs[currentCategory];
+            const imgBefore = document.getElementById('img-before');
+            const imgAfter = document.getElementById('img-after');
+            
+            const cacheBuster = `?t=${new Date().getTime()}`;
+            
+            const newSrcBefore = `${baseUrl}/${config.leftDir}-${currentIndex}.png${cacheBuster}`;
+            const newSrcAfter = `${baseUrl}/${config.rightDir}-${currentIndex}.png${cacheBuster}`;
+
+            imgBefore.src = newSrcBefore;
+            imgAfter.src = newSrcAfter;
+
+            document.getElementById('label-left').innerText = config.labelL;
+            document.getElementById('label-right').innerText = config.labelR;
+        }
+
+        initSelector();
+        updateImages();
+    </script>
+</body>
+</html>
